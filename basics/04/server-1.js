@@ -2,8 +2,10 @@
 
 const http = require("http");
 
+
 const server = http.createServer((req, res) => {
   console.log("요청발생");
+  res.write("hello")
 });
 
 server.listen(3000, () => {
