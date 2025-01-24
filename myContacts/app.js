@@ -6,6 +6,7 @@ dbConnect();
 
 app.get("/", (req, res) => {
   res.send("Hello Node");
+  console.log(dbConnect)
 });
 
 app.use(express.json());
