@@ -1,19 +1,20 @@
 const express = require("express");
 const router = express.Router();
+const {getAllContacts, createContact} = require("../controllers/contactController")
+
 
 router
   .route("/")
-  .get((req, res) => {
-    res.send("Contacts Page");
-  })
-  .post((req, res) => {
-    console.log(req.body);
-    const {name, email, phone} = req.body;
-    if(!name || !email || !phone){
-      return res.send("필수 값이 입력되지 않았습니다.")
-    }
-    res.send("create contacts");
-  });
+  .get(getAllContacts)
+  .post(createContact)
+  // .post((req, res) => {
+  //   console.log(req.body);
+  //   const {name, email, phone} = req.body;
+  //   if(!name || !email || !phone){
+  //     return res.send("필수 값이 입력되지 않았습니다.")
+  //   }
+  //   res.send("create contacts");
+  // });
 
 router
   .route("/:id")

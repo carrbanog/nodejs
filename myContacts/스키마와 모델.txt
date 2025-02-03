@@ -1,0 +1,9 @@
+스키마: 애플리케이션에서 사용할 자료의 형태를 정하는 것
+스키마 파일은 애플리케이션 코드와 별도의 파일로 작성한다 -> 코드의 재사용성이 
+
+required: true -> 필수로 입력해야 할때 사용
+required: [true, "전화보호는 꼭 기입해 주세요"], 
+만약 입력을 안하면 에러 표시
+
+const Contact = mongoose.model("Contact", contactSchema);
+contactScema를  Contact라는 이름의 모델로 바꿔주고 그 함수의 이름을 Contact로 지정(이름을 지정하는 이유는 exports로 내보낼려고)
