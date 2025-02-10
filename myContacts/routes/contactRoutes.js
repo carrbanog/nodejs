@@ -6,6 +6,7 @@ const {
   getContact,
   updateContact,
   deleteContact,
+  updateOne
 } = require("../controllers/contactController");
 
 router.route("/").get(getAllContacts).post(createContact);
@@ -17,7 +18,7 @@ router.route("/").get(getAllContacts).post(createContact);
 //   }
 //   res.send("create contacts");
 // });
-
+router.route("/update/:id").put(updateOne)
 router
   .route("/:id")
   .get(getContact)

@@ -57,10 +57,18 @@ const deleteContact = asyncHandler(async (req, res) => {
   res.send("Deleted");
 });
 
+const updateOne = asyncHandler(async(req, res) => {
+  const id = req.params.id
+  const { name, email, phone } = req.body;
+  console.log(req.body.name);
+  const contact = await Contact.updateOne({name: "Park"}, {phone: "55555"});
+})
+
 module.exports = {
   getAllContacts,
   createContact,
   getContact,
   updateContact,
   deleteContact,
+  updateOne
 };
