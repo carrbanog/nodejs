@@ -1,9 +1,37 @@
 스키마: 애플리케이션에서 사용할 자료의 형태를 정하는 것
 스키마 파일은 애플리케이션 코드와 별도의 파일로 작성한다 -> 코드의 재사용성이 
 
+모델: 데이터를 코드로 정의하는 방법
+
 required: true -> 필수로 입력해야 할때 사용
 required: [true, "전화보호는 꼭 기입해 주세요"], 
 만약 입력을 안하면 에러 표시
 
 const Contact = mongoose.model("Contact", contactSchema);
 contactScema를  Contact라는 이름의 모델로 바꿔주고 그 함수의 이름을 Contact로 지정(이름을 지정하는 이유는 exports로 내보낼려고)
+
+데이터베이스 모델에서 사용하는 함수
+create 함수: 데이터베이스에 새로운 도큐먼트를 만듦
+Contact.create({name: "kim", email: "kim@abc.def", phone:"12345"})
+
+find함수: 조건에 맞는 도큐먼트를  찾음 조건을 지정하지 않으면 모든 도큐먼트를 찾음
+Contact.find()
+Contact.find({name: "kim:})
+
+findOne 함수: 조건에 맞는 도큐먼트가 여러 개일 경우 첫 번째 도큐먼트를 찾음
+Contact.findOne({name: "kim"})
+
+findeById 함수: 아이디 값을 기준으로 도큐먼트를 찾음
+Contact.findeById("12345")
+
+findeByIdAndUpdate, findeByIdAndDelete 함수: 지정한 id에 해당하는 도큐먼트를 찾아 업데이트하거나 삭제함
+Contact.findeByIdAndUpdate(id, {name, email, phone})
+
+updateOne, updateMany 함수: 지정한 조건에 해당하는 도큐먼트를 찾아 내용을 업데이트함
+Contact.updateOne({name: "kim"}, {phone: "67890"})
+
+deleteOne, deleteMany 함수: 지정한 조건에 해당하는 도큐먼트를 찾아 내용을 삭제함
+Contact.deleteMany({name: "kim"}) (도큐먼트 전체가 삭제)
+
+
+

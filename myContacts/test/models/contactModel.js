@@ -10,7 +10,7 @@ const contactSchema = new mongoose.Schema({
   },
   phone:{
     type: String,
-    required: [true, "전화번호는 꼭 기입해 주세요"], 
+    required: [true, "전화보호는 꼭 기입해 주세요"], 
   }
 },
 {
