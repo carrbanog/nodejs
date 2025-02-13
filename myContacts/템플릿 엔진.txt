@@ -19,3 +19,16 @@ css, js파일, 이미지 등 정적인 파일은 별도의 폴더에 모아놓�
  템플릿 엔진(SSR, Server-Side Rendering) → 서버에서 HTML을 완성해서 클라이언트에 전달
 ✅ 프론트엔드에서 데이터 받아 렌더링(CSR, Client-Side Rendering) → 서버에서 데이터를 받아 프론트엔드에서 HTML을 생성하여 화면에 표시
 
+get, post말고 put이나 delete는 form태그에서 처리하지 못함
+method-override 패키지 설치
+app.js에 미들웨어로 등록해서 전체에 등록
+<form action="/contacts/<%= contact._method=DELETE" method="POST" style="diinline;">
+
+contactControllers.js  38줄
+res.redirect(경로): 경로로 새로운 요청을 보내도록 함
+res.render("index.ejs", {contacts: contact}) 사용하면 안되는 이유
+1. 수정된 단일 연락처만 전달함
+2. res.render은 현재 요청에 대해 템플릿을 렌더링할 뿐 클라이언트의 url은 변경 x
+3.PRG (Post-Redirect-Get)패턴
+put요청 후 res.render을  사용하면 사용자가 새로고침을 누를 때마다 같은 put요청이 반복될 수 있음
+  res.redirect("/contacts") put요청 후 contacts경로로 다시 get요청을 보내서 중복 발생 x

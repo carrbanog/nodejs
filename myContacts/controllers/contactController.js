@@ -27,12 +27,13 @@ const createContact = asyncHandler(async (req, res) => {
     email,
     phone,
   });
-  res.send("create contacts");
+  // res.send("create contacts");
+  res.redirect("/contacts")
 });
 
 const getContact = asyncHandler(async (req, res) => {
   const contact = await Contact.findById(req.params.id);
-  res.send(contact);
+  res.render("update.ejs", {contact: contact});
 });
 
 const updateContact = asyncHandler(async (req, res) => {
@@ -45,22 +46,26 @@ const updateContact = asyncHandler(async (req, res) => {
   if (!contact) {
     throw new Error("Contact not found");
   }
-  contact.name = name;
+  contact.name = req.body.name;
   contact.email = email;
   contact.phone = phone;
 
   contact.save();
-  res.json(contact);
+  // res.json(contact);
+  res.redirect("/contacts")
+  // res.render("index.ejs", {contacts: contact})
 });
 const deleteContact = asyncHandler(async (req, res) => {
   // res.status(200).send(`Delete Contact for ID: ${req.params.id}`);
   const id = req.params.id;
-  const contact = await Contact.findById(id);
-  if (!contact) {
-    throw new Error("Contact not found");
-  }
-  await Contact.deleteOne();
-  res.send("Deleted");
+  // const contact = await Contact.findById(id);
+  // if (!contact) {
+  //   throw new Error("Contact not found");
+  // }
+  // await Contact.deleteOne();
+  // res.send("Deleted");
+  await Contact.findByIdAndDelete(id);
+  res.redirect("/contacts")
 });
 
 const updateOne = asyncHandler(async(req, res) => {
