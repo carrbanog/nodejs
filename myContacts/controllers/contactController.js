@@ -5,8 +5,14 @@ const Contact = require("../models/contactModel");
 const getAllContacts = asyncHandler(async (req, res) => {
   const contacts = await Contact.find();
   // res.send("Contacts Page");
-  res.send(contacts);
+  // res.send(contacts);
+
+  res.render("index.ejs", {contacts: contacts});
 });
+
+const addContact = ((req, res) => {
+  res.render("add.ejs");
+})
 
 //create contact
 const createContact = asyncHandler(async (req, res) => {
@@ -70,5 +76,6 @@ module.exports = {
   getContact,
   updateContact,
   deleteContact,
-  updateOne
+  updateOne,
+  addContact
 };

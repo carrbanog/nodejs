@@ -6,10 +6,11 @@ const {
   getContact,
   updateContact,
   deleteContact,
-  updateOne
+  updateOne,
+  addContact
 } = require("../controllers/contactController");
 
-router.route("/").get(getAllContacts).post(createContact);
+router.route("/").get(getAllContacts);
 // .post((req, res) => {
 //   console.log(req.body);
 //   const {name, email, phone} = req.body;
@@ -19,6 +20,7 @@ router.route("/").get(getAllContacts).post(createContact);
 //   res.send("create contacts");
 // });
 router.route("/update/:id").put(updateOne)
+router.route("/add").get(addContact).post(createContact);
 router
   .route("/:id")
   .get(getContact)
