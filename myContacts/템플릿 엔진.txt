@@ -34,6 +34,9 @@ put요청 후 res.render을  사용하면 사용자가 새로고침을 누를 �
   res.redirect("/contacts") put요청 후 contacts경로로 다시 get요청을 보내서 중복 발생 x
 
 
+
+
+
 app.use(express.static(path.join(__dirname, "assets")));
 이 코드가 있는 상태에서 모든 경로를 다 주석처리해도 localhost에 접속이 가능했음
 
@@ -62,3 +65,11 @@ bcrypt.compate(data,  encrypted, callback)
 data: 비교할 입력값
 encrypted:비교할 대상
 callback: 비교한 후에 실행할 함수
+
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+연락처를 추가할때  이 코드가 없을때 빈 값이 저장됨
+
+app.use(express.urlencoded({ extended: true }))를 추가하여 정상적으로 작동한 이유는 폼 데이터를 파싱하는 방식 때문입니다.
+https://chatgpt.com/share/67aed01a-e3a8-800d-b853-2ef4e8c6fb83

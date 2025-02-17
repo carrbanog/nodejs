@@ -4,12 +4,19 @@ const app = express();
 
 dbConnect();
 
+app.set("view engine", "ejs");
+app.set("views", "./views");
+
 app.get("/", (req, res) => {
   res.send("Hello node test file");
   console.log(dbConnect)
 })
 
-app.use(express.json())
+
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 app.use("/contacts", require("./routes/contactRoutes"))
 

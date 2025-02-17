@@ -2,9 +2,15 @@ const asyncHandler = require("express-async-handler");
 // const Contact = require("../../models/contactModel");
 const Contact = require("../models/contactModel")
 
-const getAllContacts = asyncHandler((req, res) => {
-  res.send("Contacts Page test");
+const getAllContacts = asyncHandler(async(req, res) => {
+  const contacts = await Contact.find();
+  res.render("index.ejs", {contacts: contacts})
+  // res.send("Contacts Page test");
 });
+
+const addContact = ((req, res) => {
+  res.render("add.ejs")
+})
 
 const createContact = asyncHandler(async (req, res) => {
   console.log(req.body);
@@ -15,7 +21,8 @@ const createContact = asyncHandler(async (req, res) => {
   const contact = await Contact.create({
     name, email, phone
   })
-  res.send("create contacts test");
+  // res.send("create contacts test");
+  res.redirect("/contacts")
 });
 
 const getContact = asyncHandler((req, res) => {
@@ -37,4 +44,5 @@ module.exports = {
   getContact,
   updateContact,
   deleteContact,
+  addContact,
 };
